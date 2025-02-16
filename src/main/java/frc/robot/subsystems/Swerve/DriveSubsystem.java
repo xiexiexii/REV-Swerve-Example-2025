@@ -72,7 +72,7 @@ public class DriveSubsystem extends SubsystemBase {
   // Odometry - Tracks robot pose
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
     DriveConstants.kDriveKinematics, 
-    Rotation2d.fromDegrees(m_gyro.getYaw()), 
+    Rotation2d.fromDegrees(-m_gyro.getYaw()), 
     new SwerveModulePosition[] {
       m_frontLeft.getPosition(),
       m_frontRight.getPosition(),
@@ -140,7 +140,7 @@ public class DriveSubsystem extends SubsystemBase {
 
       // Puts Yaw + Angle on Smart Dashboard
       SmartDashboard.putNumber("NavX Yaw", -m_gyro.getYaw());
-      SmartDashboard.putNumber("NavX Angle", m_gyro.getAngle());
+      SmartDashboard.putNumber("NavX Angle", -m_gyro.getAngle());
   }
 
   // Returns currently estimated pose of robot
@@ -185,7 +185,7 @@ public class DriveSubsystem extends SubsystemBase {
         xSpeedDelivered, 
         ySpeedDelivered, 
         rotDelivered,
-        Rotation2d.fromDegrees(m_gyro.getAngle())
+        Rotation2d.fromDegrees(-m_gyro.getYaw())
       ) : new ChassisSpeeds(xSpeedDelivered, ySpeedDelivered, rotDelivered));
     
     // Ensures wheel speed are physically attainable
@@ -263,7 +263,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // Return Robot Headings, from -180 to 180 degrees
   public double getHeading() {
-    return Rotation2d.fromDegrees(m_gyro.getYaw()).getDegrees();
+    return Rotation2d.fromDegrees(-m_gyro.getYaw()).getDegrees();
   }
 
   // Returns Robot Turn Rate, in degrees per second
