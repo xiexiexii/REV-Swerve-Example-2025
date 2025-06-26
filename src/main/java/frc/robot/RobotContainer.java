@@ -9,11 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.ControllerConstants;
-import frc.robot.Constants.VisionConstants;
-import frc.robot.commands.AimCommandGamePiece;
 import frc.robot.commands.LEDColorChangeCommand;
 import frc.robot.subsystems.LEDSubsystem;
-import frc.robot.subsystems.PhotonHelpers;
 import frc.robot.subsystems.Swerve.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -29,7 +26,6 @@ public class RobotContainer {
   // Robot's Subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   private final LEDSubsystem m_LEDSubsystem = new LEDSubsystem();
-  private final PhotonHelpers m_photonSubsystem = new PhotonHelpers(VisionConstants.k_aprilTagCameraName, VisionConstants.k_objectDetectionCameraName);
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // Controllers
@@ -72,11 +68,6 @@ public class RobotContainer {
     // Sets wheels in an X position to prevent movement - A
     new JoystickButton(m_driverController, ControllerConstants.k_A)
       .whileTrue(new RunCommand(() -> m_robotDrive.setX(), m_robotDrive)
-    );
-
-    // Aim Command Photon - B
-    new JoystickButton(m_driverController, ControllerConstants.k_B)
-      .onTrue(new AimCommandGamePiece(m_robotDrive, m_photonSubsystem)
     );
   }
 

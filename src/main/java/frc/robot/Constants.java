@@ -98,25 +98,4 @@ public final class Constants {
   public static final class LEDConstants {
     public static final int blinkinPort = 0;  
   }
-
-  // Vision Constants
-  public static final class VisionConstants {
-
-    // Camera Name
-    public static String k_aprilTagCameraName = "Arducam OV2311";
-    public static String k_objectDetectionCameraName = "Microsoft HD3000";
-
-    // Boolean for Position Status
-    public static boolean k_positioned = false;
-    public static boolean k_positioning = false;
-
-    // Target & Thresholds
-    public static double k_aimTarget = 0.0;
-    public static double k_aimThreshold = 0.5;
-
-    // PID Stuff
-    public static final double kP_aim = 0.10;
-    public static final double kI_aim = 0.000;
-    public static final double kD_aim = 0.000;
-  }
 }
