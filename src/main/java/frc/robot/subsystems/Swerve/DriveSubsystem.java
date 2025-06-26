@@ -62,9 +62,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_backLeft,
     m_backRight
   };
-
-  // Creates the Gyro for Swerve Magic
-  private final AHRS m_gyro = new AHRS(NavXComType.kUSB1);
+ 
+  // Change to NavXComType.kUSB2 if using the other USB port
+  // No other USB connections are allowed if using NavX USB
+  // for reliability reasons. NO CANIVORE.
+  private final AHRS m_gyro = new AHRS(NavXComType.kUSB1); 
 
   // Default rotation for reference (PathPlanner)
   private Rotation2d rawGyroRotation = new Rotation2d();
