@@ -40,15 +40,15 @@ public final class Constants {
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;
 
     // DRIVE CAN IDs
-    public static final int kFrontLeftDrivingCanId = 6;
+    public static final int kFrontLeftDrivingCanId = 2;
     public static final int kRearLeftDrivingCanId = 4;
-    public static final int kFrontRightDrivingCanId = 8;
-    public static final int kRearRightDrivingCanId = 2;
+    public static final int kFrontRightDrivingCanId = 6;
+    public static final int kRearRightDrivingCanId = 8;
 
-    public static final int kFrontLeftTurningCanId = 5;
+    public static final int kFrontLeftTurningCanId = 1;
     public static final int kRearLeftTurningCanId = 3;
-    public static final int kFrontRightTurningCanId = 7;
-    public static final int kRearRightTurningCanId = 1;
+    public static final int kFrontRightTurningCanId = 5;
+    public static final int kRearRightTurningCanId = 7;
 
     // Gyro inverts
     public static final boolean kGyroReversed = true;
@@ -92,11 +92,31 @@ public final class Constants {
 
   // Auto stuff
   public static final class AutoConstants {
-
   }
 
   // LED Stuff
   public static final class LEDConstants {
     public static final int blinkinPort = 0;  
+  }
+
+  // Vision Constants
+  public static final class VisionConstants {
+
+    // Camera Name
+    public static String k_aprilTagCameraName = "Arducam OV2311";
+    public static String k_objectDetectionCameraName = "Microsoft HD3000";
+
+    // Boolean for Position Status
+    public static boolean k_positioned = false;
+    public static boolean k_positioning = false;
+
+    // Target & Thresholds
+    public static double k_aimTarget = 0.0;
+    public static double k_aimThreshold = 0.5;
+
+    // PID Stuff
+    public static final double kP_aim = 0.10;
+    public static final double kI_aim = 0.000;
+    public static final double kD_aim = 0.000;
   }
 }

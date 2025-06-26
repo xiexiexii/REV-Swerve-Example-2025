@@ -9,6 +9,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
@@ -21,7 +22,7 @@ import frc.robot.Configs;
 public class MAXSwerveModule {
     
   // Motors, Encoders, PID for the driving and turning motors
-  private final SparkMax m_drivingSparkMax;
+  private final SparkFlex m_drivingSparkFlex;
   private final SparkMax m_turningSparkMax;
 
   private final RelativeEncoder m_drivingEncoder;
@@ -40,21 +41,21 @@ public class MAXSwerveModule {
   public MAXSwerveModule(int drivingCANID, int turningCANID, double chassisAngularOffset) {
 
     // Initializes Driving and Turning Motors
-    m_drivingSparkMax = new SparkMax(drivingCANID, MotorType.kBrushless);
+    m_drivingSparkFlex = new SparkFlex(drivingCANID, MotorType.kBrushless);
     m_turningSparkMax = new SparkMax(turningCANID, MotorType.kBrushless);
     
     // Set up encoders for drive and turn SparkMAX
-    m_drivingEncoder = m_drivingSparkMax.getEncoder();
+    m_drivingEncoder = m_drivingSparkFlex.getEncoder();
     m_turningEncoder = m_turningSparkMax.getAbsoluteEncoder();
 
     // Sets up closed loop controller (PID) for drive and turn SparkMAX
-    m_drivingClosedLoopController = m_drivingSparkMax.getClosedLoopController();
+    m_drivingClosedLoopController = m_drivingSparkFlex.getClosedLoopController();
     m_turningClosedLoopController = m_turningSparkMax.getClosedLoopController();
 
     // Apply the respective configurations to the SPARKS. Reset parameters before
     // applying the configuration to bring the SPARK to a known good state. Persist
     // the settings to the SPARK to avoid losing them on a power cycle.
-    m_drivingSparkMax.configure(
+    m_drivingSparkFlex.configure(
       Configs.MAXSwerveModule.drivingConfig, 
       ResetMode.kResetSafeParameters,
       PersistMode.kPersistParameters
